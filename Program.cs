@@ -6,9 +6,9 @@ namespace _2017
     {
         static void Main(string[] args)
         {
-            var input = 265149;
-            Console.WriteLine($"Part 1: {Day03.Part1(input)}");
-            Console.WriteLine($"Part 2: {Day03.Part2(input)}");
+            var path = "Input/Day04.txt";
+            Console.WriteLine($"Part 1: {Day04.Part1(path)}");
+            Console.WriteLine($"Part 2: {Day04.Part2(path)}");
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
