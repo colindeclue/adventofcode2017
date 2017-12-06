@@ -32,7 +32,7 @@ public class Point {
         return new Point(this.X - 1, this.Y);
     }
 
-    public Tuple<int, int> ToTuple() => new Tuple<int, int>(this.X, this.Y);
+    public ValueTuple<int, int> ToTuple() => new ValueTuple<int, int>(this.X, this.Y);
 
     public override string ToString() => $"({this.X},{this.Y})";
 

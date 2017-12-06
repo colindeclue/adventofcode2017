@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public static class Day03 {
 
     public static int Part1(int input) {
-        var dict = new Dictionary<Tuple<int, int>, Point>();
+        var dict = new Dictionary<ValueTuple<int, int>, Point>();
         var start = new Point(0,0);
         dict[start.ToTuple()] = start;
 
@@ -19,7 +19,7 @@ public static class Day03 {
     }
 
     public static int Part2(int input) {
-        var dict = new Dictionary<Tuple<int, int>, Point>();
+        var dict = new Dictionary<ValueTuple<int, int>, Point>();
         var start = new Point(0,0);
         dict[start.ToTuple()] = start;
         start.Value = 1;
@@ -47,7 +47,7 @@ public static class Day03 {
         return -1;
     }
 
-    private static Tuple<Point, Direction> DoStep(Direction currentDirection, Point start, Dictionary<Tuple<int, int>, Point> dict) {
+    private static ValueTuple<Point, Direction> DoStep(Direction currentDirection, Point start, Dictionary<ValueTuple<int, int>, Point> dict) {
         start = start.Move(currentDirection);
         dict.Add(start.ToTuple(), start);
         var nextDirection = NextDirection(currentDirection);
@@ -56,7 +56,7 @@ public static class Day03 {
             currentDirection = nextDirection;
         }
 
-        return new Tuple<Point, Direction>(start, currentDirection);
+        return new ValueTuple<Point, Direction>(start, currentDirection);
     }
 
     private static Direction NextDirection(Direction direction) {
