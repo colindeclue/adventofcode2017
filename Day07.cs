@@ -20,19 +20,19 @@ public static class Day07 {
         var highestUnbalanced = nodeDictionary.Values.Where(n => !n.IsBalanced()).OrderByDescending(n => n.Depth()).FirstOrDefault();
 
         var byChildWeight = highestUnbalanced.ChildNodes.OrderByDescending(c => c.TotalWeight()).ToList();
-        // assume 3 childWeights
-        if(byChildWeight[0].TotalWeight() > byChildWeight[1].TotalWeight()) {
+        // There's more than 2 child weights. Can't be done unambiguously if there's only 2.
+        var average = byChildWeight.Average(n => n.TotalWeight());
+
+        if(byChildWeight.First().TotalWeight() > average) {
             // first one weighs too much
             return byChildWeight[0].Weight - (byChildWeight[0].TotalWeight() - byChildWeight[1].TotalWeight());
         }
-        else if(byChildWeight[2].TotalWeight() < byChildWeight[1].TotalWeight()) {
+        else if(byChildWeight.Last().TotalWeight() < average) {
             // last one weighs too little
-            return byChildWeight[2].Weight + (byChildWeight[1].TotalWeight() - byChildWeight[2].TotalWeight());
+            return byChildWeight.Last().Weight + (byChildWeight[0].TotalWeight() - byChildWeight.Last().TotalWeight());
         }
+        
         return -1;
-        // var childWeights = highestUnbalanced.ChildNodes.Select(c => c.TotalWeight())
-
-        // return highestUnbalanced;
     }
 
     private static Dictionary<string, Node> GetNodes(IEnumerable<string> lines) {
