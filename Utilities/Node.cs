@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class Node {
-    public int Weight { get; }
+    public int Weight { get; set; }
 
     public string Name { get; }
 
@@ -49,6 +49,11 @@ public class Node {
     public Node(string name, int weight) {
         this.Name = name;
         this.Weight = weight;
+        this.ChildNodes = new List<Node>();
+    }
+
+    public Node(string name) {
+        this.Name = name;
         this.ChildNodes = new List<Node>();
     }
 }

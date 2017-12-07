@@ -31,7 +31,7 @@ public static class Day07 {
             // last one weighs too little
             return byChildWeight.Last().Weight + (byChildWeight[0].TotalWeight() - byChildWeight.Last().TotalWeight());
         }
-        
+
         return -1;
     }
 
@@ -43,26 +43,34 @@ public static class Day07 {
             var matches = nameAndWeightRegex.Matches(line);
             var name = matches[0].Groups["name"].Value;
             var weight = matches[0].Groups["weight"].Value;
-            var node = new Node(name, int.Parse(weight));
-            nodeDictionary.Add(name, node);
-        }
+            Node node;
+            if(nodeDictionary.ContainsKey(name)) {
+                node = nodeDictionary[name];
+                node.Weight = int.Parse(weight);
+            }
+            else {
+                node = new Node(name, int.Parse(weight));
+                nodeDictionary.Add(name, node);
+            }
 
-        // Next we loop through again to assign parents/children
-        foreach(var line in lines) {
-            // Only work with lines with 
             if(!line.Contains("->")) {
                 continue;
             }
-
-            var matches = nameAndWeightRegex.Matches(line);
-            var name = matches[0].Groups["name"].Value;
+            // find and assign children/parents
             var parts = line.Split(new [] { "->" }, StringSplitOptions.None);
             var children = parts[1].Split(',').Select(s => s.Trim());
-            var parentNode = nodeDictionary[name];
             foreach(var child in children) {
-                var childNode = nodeDictionary[child];
-                parentNode.ChildNodes.Add(childNode);
-                childNode.ParentNode = parentNode;
+                Node childNode;
+                if(nodeDictionary.ContainsKey(child)) {
+                    childNode = nodeDictionary[child];
+                }
+                else {
+                    childNode = new Node(child);
+                    nodeDictionary.Add(child, childNode);
+                }
+
+                node.ChildNodes.Add(childNode);
+                childNode.ParentNode = node;
             }
         }
 
