@@ -6,11 +6,10 @@ namespace _2017
     {
         static void Main(string[] args)
         {
-            var input = "Input/Day07.txt";
-            // var input = new[]{2,4,1,2};
-            
-            Console.WriteLine($"Part 1: {Day07.Part1(input)}");
-            Console.WriteLine($"Part 2: {Day07.Part2(input)}");
+            var input = "Input/Day08.txt";
+            var answer = Day08.DoAll(input);
+            Console.WriteLine($"Part 1: {answer.endMax}");
+            Console.WriteLine($"Part 2: {answer.globalMax}");
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
