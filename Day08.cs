@@ -22,12 +22,11 @@ public static class Day08 {
                 globalMax = registerValue;
             }
             if(Operations[operation](registerValue, compareTo)) {
-                registers[toChange] = CheckRegister(registers, toChange) + (sign * amount);
-                // var newValue = CheckRegister(registers, toChange) + (sign * amount);
-                // if(newValue > globalMax) {
-                //     globalMax = newValue;
-                //     registers[toChange] = newValue;
-                // }
+                var newValue = CheckRegister(registers, toChange) + (sign * amount);
+                if(newValue > globalMax) {
+                    globalMax = newValue;
+                }
+                registers[toChange] = newValue;
             }
         }
 
