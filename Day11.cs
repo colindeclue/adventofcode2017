@@ -3,11 +3,15 @@ using System.IO;
 using System.Linq;
 
 public static class Day11 {
-    public static int Part1(string path) {
+    public static (int finalDistance, int maxDistance) DoAll(string path) {
         var input = File.ReadAllLines(path).First();
         var currentList = new List<string>();
         var steps = input.Split(',');
+        var maxLength = int.MinValue;
         foreach(var step in steps) {
+            if(currentList.Count > maxLength) {
+                maxLength = currentList.Count;
+            }
             var opposite = Opposites[step];
             if(currentList.Contains(opposite)) {
                 currentList.Remove(opposite);
@@ -24,14 +28,14 @@ public static class Day11 {
                         break;
                     }
                 }
-                
+
                 if(!found) {
                     currentList.Add(step);
                 }
             }
         }
 
-        return currentList.Count;
+        return (finalDistance: currentList.Count, maxDistance: maxLength);
     }
 
     private static Dictionary<string, string> Opposites = new Dictionary<string, string>{
