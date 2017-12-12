@@ -6,9 +6,9 @@ namespace _2017
     {
         static void Main(string[] args)
         {
-            var input = "Input/Day11.txt";
-            Console.WriteLine($"Part 1: {Day11.DoAll(input).finalDistance}");
-            Console.WriteLine($"Part 2: {Day11.DoAll(input).maxDistance}");
+            var input = "Input/Day12.txt";
+            Console.WriteLine($"Part 1: {Day12.Part1(input)}");
+            Console.WriteLine($"Part 2: {Day12.Part2(input)}");
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
