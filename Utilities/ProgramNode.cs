@@ -24,8 +24,7 @@ public class ProgramNode {
 
         foreach(var child in Connections) {
             if(!currentGroup.ContainsKey(child.Id)) {
-                var childGroup = child.FindGroup(currentGroup);
-                childGroup.ToList().ForEach(g => currentGroup[g.Key] = g.Value);
+                child.FindGroup(currentGroup);
             }
         }
 
