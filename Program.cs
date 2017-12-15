@@ -9,9 +9,10 @@ namespace _2017
         {
             var sw = new Stopwatch();
             sw.Start();
-            var input = "amgozmfv";
-            Console.WriteLine($"Part 1: {Day14.Part1(input)}");
-            Console.WriteLine($"Part 2: {Day14.Part2(input)}");
+            long genA = 634;
+            long genB = 301;
+            Console.WriteLine($"Part 1: {Day15.Part1(genA, genB, 40000000)}");
+            Console.WriteLine($"Part 2: {Day15.Part2(genA, genB, 5000000)}");
             sw.Stop();
 
             Console.WriteLine($"Time: {sw.ElapsedMilliseconds}");
