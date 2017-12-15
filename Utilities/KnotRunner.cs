@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 public class KnotRunner {
@@ -32,4 +33,18 @@ public class KnotRunner {
             this._skip++;
         }
     }
+
+    public List<byte> GetResult() {
+        for(int i = 0; i < 64; i++) {
+            this.DoRound();
+        }
+
+        var denseHash = new List<byte>();
+        for(int i = 0; i < 16; i++) {
+            var current = this.List.Skip(i * 16).Take(16).Aggregate((all, next) => next ^ all);
+            denseHash.Add((byte)current);
+        }
+
+        return denseHash;
+    }    
 }

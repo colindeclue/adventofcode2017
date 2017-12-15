@@ -16,6 +16,12 @@ public class Point {
         this.Length = Math.Abs(x) + Math.Abs(y);
     }
 
+    public Point(int x, int y, int value) {
+        this.X = x;
+        this.Y = y;
+        this.Value = value;
+    }
+
     public Point Up() {
         return new Point(this.X, this.Y + 1);
     }
@@ -36,16 +42,18 @@ public class Point {
 
     public override string ToString() => $"({this.X},{this.Y})";
 
-    public List<Point> GetNeighbors() {
+    public List<Point> GetNeighbors(bool includeDiagonals = true) {
         var toReturn = new List<Point>();
         toReturn.Add(this.Move(Direction.Up));
         toReturn.Add(this.Move(Direction.Right));
         toReturn.Add(this.Move(Direction.Down));
         toReturn.Add(this.Move(Direction.Left));
-        toReturn.Add(this.Move(Direction.Up).Move(Direction.Right));
-        toReturn.Add(this.Move(Direction.Up).Move(Direction.Left));
-        toReturn.Add(this.Move(Direction.Down).Move(Direction.Right));
-        toReturn.Add(this.Move(Direction.Down).Move(Direction.Left));
+        if(includeDiagonals) {
+            toReturn.Add(this.Move(Direction.Up).Move(Direction.Right));
+            toReturn.Add(this.Move(Direction.Up).Move(Direction.Left));
+            toReturn.Add(this.Move(Direction.Down).Move(Direction.Right));
+            toReturn.Add(this.Move(Direction.Down).Move(Direction.Left));
+        }
         return toReturn;
     }
 
