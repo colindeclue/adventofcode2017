@@ -8,10 +8,16 @@ public static class Day16 {
         var moves = File.ReadAllLines(path).First().Split(',').ToList();
         var moveResults = new Dictionary<string, string>();
         var danceResults = new Dictionary<string, string>();
+        var loopFound = false;
         for(int i = 0; i < times; i++) {
             var dancersKey = dancers;
+            if(loopFound) {
+                dancers = danceResults[dancersKey];
+                continue;
+            }
             if(danceResults.ContainsKey(dancersKey)) {
                 dancers = danceResults[dancersKey];
+                loopFound = true;
                 continue;
             }
             foreach(var move in moves) {
