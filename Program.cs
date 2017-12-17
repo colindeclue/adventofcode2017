@@ -9,10 +9,11 @@ namespace _2017
         {
             var sw = new Stopwatch();
             sw.Start();
-            var path = "Input/Day16.txt";
-            var dancers = "abcdefghijklmnop";
-            Console.WriteLine($"Part 1: {Day16.Part1(path, dancers)}");
-            Console.WriteLine($"Part 2: {Day16.Part2(path, dancers, 1000000000)}");
+            var stepSize = 356;
+            var steps = 2017;
+            Console.WriteLine($"Part 1: {Day17.Part1(stepSize, steps)}");
+            steps = 50000000;
+            Console.WriteLine($"Part 2: {Day17.Part2(stepSize, steps)}");
             sw.Stop();
 
             Console.WriteLine($"Time: {sw.ElapsedMilliseconds}");

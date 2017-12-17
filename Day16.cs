@@ -8,6 +8,7 @@ public static class Day16 {
         var moves = File.ReadAllLines(path).First().Split(',').ToList();
         var moveResults = new Dictionary<string, string>();
         var danceResults = new Dictionary<string, string>();
+        var results = new List<string>();
         var loopFound = false;
         for(int i = 0; i < times; i++) {
             var dancersKey = dancers;
@@ -18,7 +19,7 @@ public static class Day16 {
             if(danceResults.ContainsKey(dancersKey)) {
                 dancers = danceResults[dancersKey];
                 loopFound = true;
-                continue;
+                break;
             }
             foreach(var move in moves) {
                 var key = dancers + move;
@@ -49,9 +50,10 @@ public static class Day16 {
                 moveResults[key] = dancers;
             }
             danceResults[dancersKey] = dancers;
+            results.Add(dancers);
         }
 
-        return dancers;
+        return results[(times - 1) % results.Count];
     }
 
     public static string Part2(string path, string dancers, int times) {
