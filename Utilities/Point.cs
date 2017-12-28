@@ -10,6 +10,8 @@ public class Point {
 
     public int Value { get; set; }
 
+    public InfectionStatus InfectionStatus { get; set;}
+
     public Point(int x, int y) {
         this.X = x;
         this.Y = y;
@@ -22,19 +24,25 @@ public class Point {
         this.Value = value;
     }
 
-    public Point Up() {
-        return new Point(this.X, this.Y + 1);
+    public Point(int x, int y, InfectionStatus infectionStatus) {
+        this.X = x;
+        this.Y = y;
+        this.InfectionStatus = infectionStatus;
     }
 
-    public Point Right() {
+    public Point Up(bool invert) {
+        return new Point(this.X, invert ? this.Y - 1 : this.Y + 1);
+    }
+
+    public Point Right(bool invert) {
         return new Point(this.X + 1, this.Y);
     }
 
-    public Point Down() {
-        return new Point(this.X, this.Y - 1);
+    public Point Down(bool invert) {
+        return new Point(this.X, invert ? this.Y + 1 : this.Y - 1);
     }
 
-    public Point Left() {
+    public Point Left(bool invert) {
         return new Point(this.X - 1, this.Y);
     }
 
@@ -57,16 +65,16 @@ public class Point {
         return toReturn;
     }
 
-    public Point Move(Direction direction) {
+    public Point Move(Direction direction, bool invert = false) {
         switch(direction) {
             case Direction.Up:
-                return this.Up();
+                return this.Up(invert);
             case Direction.Right:
-                return this.Right();
+                return this.Right(invert);
             case Direction.Down:
-                return this.Down();
+                return this.Down(invert);
             case Direction.Left:
-                return this.Left();
+                return this.Left(invert);
             default:
                 return this;
         }

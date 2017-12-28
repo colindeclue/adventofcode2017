@@ -9,9 +9,9 @@ namespace _2017
         {
             var sw = new Stopwatch();
             sw.Start();
-            var path = "Input/Day21.txt";
-            Console.WriteLine($"Part 1: {Day21.Part1(path, 5)}");
-            Console.WriteLine($"Part 2: {Day21.Part1(path, 18)}");
+            var path = "Input/Day22.txt";
+            Console.WriteLine($"Part 1: {Day22.Part1(path, 10000)}");
+            Console.WriteLine($"Part 2: {Day22.Part2(path, 10000000)}");
             sw.Stop();
 
             Console.WriteLine($"Time: {sw.ElapsedMilliseconds}");
